@@ -6,7 +6,7 @@ class Usuario {
     this.libros = libros //objeto 
     this.mascotas = mascotas // string 
 }
-getFullName () {
+getFullName (){
     return `${this.nombre} , ${this.apellido}` //devuelvo los valores con un return 
 }
 
@@ -22,7 +22,7 @@ addBook (titulo, nombreAutor){
     this.libros.push({nombre: titulo, autor: nombreAutor}) //utilizo la funcion push para agregar objetos a un array
 }
 
-getBookNames () {
+getBookNames (){
     return this.libros.map((libros) => libros.nombre) //utilizo la funcion map y una arrow function para traer los nombres de los objetos del array
 }
 }
