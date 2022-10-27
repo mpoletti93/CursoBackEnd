@@ -8,21 +8,19 @@ class Contenedor {
 
 async readFileOrCreateNewOne() {
     try {
-        await fs.promises.readFile(this._filename, "utf-8");
+        await fs.promises.readFile(this.filename, "utf-8");
     } catch (error) {
     error.code === "ENOENT"
         ? this.createEmptyFile()
-        : console.log(
-            `Error Code: ${error.code} | There was an unexpected error when trying to read ${this._filename}`
-        );
+        : console.log(`Error Code: ${error.code} | There was an unexpected error when trying to read ${this.filename}`);
     }
 }
 
 async createEmptyFile() {
-    fs.writeFile(this._filename, "[]", (error) => {
+    fs.writeFile(this.filename, "[]", (error) => {
     error
         ? console.log(error)
-        : console.log(`File ${this._filename} was created since it didn't exist in the system`);
+        : console.log(`File ${this.filename} was created since it didn't exist in the system`);
     });
 }
 
@@ -33,9 +31,7 @@ async getById(id) {
 
     return parsedData.find((producto) => producto.id === id);
     } catch (error) {
-    console.log(
-        `Error Code: ${error.code} | There was an error when trying to get an element by its ID (${id})`
-    );
+    console.log(`Error Code: ${error.code} | There was an error when trying to get an element by its ID (${id})`);
     }
 }
 
@@ -56,9 +52,7 @@ async deleteById(id) {
         return null;
     }
     } catch (error) {
-    console.log(
-        `Error Code: ${error.code} | There was an error when trying to delete an element by its ID (${id})`
-    );
+    console.log(`Error Code: ${error.code} | There was an error when trying to delete an element by its ID (${id})`);
     }
 }
 
@@ -73,9 +67,7 @@ async save(object) {
     await fs.promises.writeFile(this._filename, JSON.stringify(parsedData));
     return object.id;
     } catch (error) {
-    console.log(
-        `Error Code: ${error.code} | There was an error when trying to save an element`
-    );
+    console.log(`Error Code: ${error.code} | There was an error when trying to save an element`);
     }
 }
 
@@ -83,9 +75,7 @@ async deleteAll() {
     try {
     await this.createEmptyFile();
     } catch (error) {
-    console.log(
-        `There was an error (${error.code}) when trying to delete all the objects`
-    );
+    console.log(`There was an error (${error.code}) when trying to delete all the objects`);
     }
 }
 
