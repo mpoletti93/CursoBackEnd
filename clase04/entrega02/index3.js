@@ -32,7 +32,7 @@ class Contenedor {
 	//save(Object): Recibe un objeto, lo guarda en el archivo y devuelve el id asignado
 	async save(object) {
 		try {
-			await this.readFileOrCreateNewOne()
+			await this.readFileOrCreateNewOne() 
 
 			const allData = await this.getData()
 			const parsedData = JSON.parse(allData)
