@@ -1,0 +1,11 @@
+{
+  "name": "clase05",
+  "version": "1.0.0",
+  "description": "clase05 programacion backend coderhouse",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "yo",
+  "license": "ISC"
+}

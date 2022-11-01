@@ -98,14 +98,16 @@ async deleteAll() {
     }
 }
 
+
 const contenedor = new Contenedor("productos.txt");  //creo un contenedor de productos 
 
 const prueba = async () => {
+    const id0 = await contenedor.save({ title: "Pantalon", price: 100 }); //Si agrego un producto con id0 me agrega 3 en teoria "funciona jaja"
     const id1 = await contenedor.save({ title: "Pantalon", price: 100 });
     const id2 = await contenedor.save({ title: "Remera", price: 50 });
     const id3 = await contenedor.save({ title: "Buzo", price: 150 });
 
-    console.log(id1, id2, id3); //Devuelvo todo los archivos
+    console.log(id0, id1, id2, id3); //Devuelvo todo los archivos
 
 const object2 = await contenedor.getById(2);
     console.log(object2); // { title: 'Remera', price: 50, id: 2 }
