@@ -5,17 +5,6 @@ class Contenedor {
 		this.filename = fileName
 	}
 
-	// readFileOrCreateNewOne: Lee el archivo para las proximas funciones y si no existe crea uno nuevo
-	async readFileOrCreateNewOne() {
-		try {
-			await fs.promises.readFile(this.filename, 'utf-8') //Si encuentra archivo, lo lee y devuelve el filename
-		} catch (error) {
-			error.code === 'ENOENT' //error de que no se encuentra el archivo
-				? await this.createEmptyFile() //si no encuentra el archivo crea un nuevo archivo vacio
-				: console.log(`Error: ${error.code} `)
-		}
-	}
-
 	//createEmptyFile: crea un nuevo archivo vacio con el filename proporcionado
 	async createEmptyFile() {
 		await fs.promises.writeFile(this.filename, '[]', (error) => {
@@ -27,15 +16,18 @@ class Contenedor {
 
 	//getData: me traigo toda la data del archivo en una constante
 	async getData() {
-		const data = await fs.promises.readFile(this.filename, 'utf-8')
-		return data
+        try {
+            const data = await fs.promises.readFile(this.filename, 'utf-8')
+            return data
+        } catch (error) {
+            return '[]'
+        }
+		
 	}
 
 	//save(Object): Recibe un objeto, lo guarda en el archivo y devuelve el id asignado
 	async save(object) {
 		try {
-			await this.readFileOrCreateNewOne() 
-
 			const allData = await this.getData()
 			const parsedData = JSON.parse(allData)
 
