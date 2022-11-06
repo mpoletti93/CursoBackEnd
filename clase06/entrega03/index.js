@@ -2,7 +2,7 @@ const Contenedor = require("./Contenedor");
 const express = require('express');
 const app = express();
 const PORT = 8080;
-const contenedor = new Contenedor("productos.json");
+const contenedor = new Contenedor("productos.txt");
 
 app.get('/', (req, res) => {
     res.send('Hi Express Server!')
