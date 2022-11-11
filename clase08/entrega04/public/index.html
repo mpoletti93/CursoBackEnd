@@ -8,12 +8,14 @@
 <body>
 
     <h2>Ingrese Producto</h2>
-    <form action="/personas" method="POST">
-        Nombre: <input type="text" name="nombre">
-        Apellido: <input type="text" name="apellido">
-        Edad: <input type="text" name="edad">
-        <button>Enviar</button>
-    </form>
+    <form action="/api/productos" method="POST">
+        <label for="title">Título:</label>
+        <input type="text" name="title" required>
 
+        <label for="price">Precio:</label>
+        <input type="text" name="price" required>
+
+        <button type="submit">Agregar producto a la lista</button>
+    </form>
 </body>
 </html>
