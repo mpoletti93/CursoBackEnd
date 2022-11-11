@@ -113,7 +113,7 @@ class Contenedor {
 		}
 	}
 
-	//updateByID 
+	//updateByID funcion nueva para actualizar vía HTML
 	async updateById(id, newData) {
 		try {
 		id = Number(id);
