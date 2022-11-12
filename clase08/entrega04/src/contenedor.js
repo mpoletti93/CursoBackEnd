@@ -91,6 +91,7 @@ class Contenedor {
 				const index = parsedData.indexOf(objectIdToBeRemoved)
 				parsedData.splice(index, 1)
 				await fs.promises.writeFile(this.filename,JSON.stringify(parsedData))
+				return true;
 			} else {
 				console.log(`El ID=${id} no existe en el archivo`)
 				return null
