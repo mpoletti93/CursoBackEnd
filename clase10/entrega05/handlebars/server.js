@@ -14,8 +14,8 @@ app.set('view engine', 'hbs');
 app.engine('hbs', engine({
     extname: '.hbs',
     defaultLayout: 'index.hbs',
-    layoutsDir: __dirname + 'src/views/layouts',
-    partialsDir: __dirname + 'src/views/partials'
+    layoutsDir: __dirname + '/src/views/layouts',
+    partialsDir: __dirname + '/src/views/partials'
 }))
 
 app.get('/productos', async(req, res) => {
