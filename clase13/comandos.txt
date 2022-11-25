@@ -1,0 +1,2 @@
+npm init -i
+npm i express socket.io

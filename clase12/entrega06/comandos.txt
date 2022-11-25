@@ -1,0 +1,3 @@
+npm init -i
+npm i router
+npm i express socket.io
