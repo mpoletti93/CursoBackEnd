@@ -45,8 +45,11 @@ router.get("/productos", (req, res) => {
 //////////////////////////////////////////////////////
 
 io.on('connection', (socket) => {
-    console.log('Unknown bunny connected')
+    console.log('🟢 Usuario conectado')
 
+socket.on('disconnect', () => {
+        console.log('🔴 Usuario desconectado')
+    })
     fs.readFile("./productos.txt", "utf-8", (err, products) => {
         
         if (err) {
@@ -201,5 +204,5 @@ app.use("/", router)
 
 httpServer.listen(PORT, err => {
     if (err) throw err
-    console.log("Server running on port 8080")
+    console.log(` >>>>> 🚀 Server started at http://localhost:${PORT}`)
 })
