@@ -4,4 +4,3 @@ npm i express socket.io
 npm install @babel/core @babel/cli @babel/preset-env
 // para guardar en package Json
 "build": "babel ./main.js -o ./main_es5.js -w"
-npm i typescript
