@@ -6,7 +6,7 @@ const carrito = new Contenedor("carrito.json", ["timestamp", "products"])
 
 const dotenv = require('dotenv');
 dotenv.config();
-console.log(`Port... ${process.env.TOKEN}`);
+console.log(`Port... ${process.env.PORT}`);
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
@@ -146,7 +146,7 @@ routerCart.delete('/:id/productos/:id_prod', async(req, res) => {
     }
 })
 
-const PORT = 8080;
+const PORT = process.env.PORT;
 const server = app.listen(PORT, () => {
 console.log(` >>>>> 🚀 Server started at http://localhost:${PORT}`)
 })
