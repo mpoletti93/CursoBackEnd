@@ -1,0 +1,11 @@
+mariadb -> base de datos
+Xampp -> servidor de base de datos
+
+en la consolo del manejador de la base
+netstat -ano -p tcp
+
+Para inicializar mysql
+//COMANDO 
+.\mysql.exe -u root
+//CARPETA
+PS C:\xampp\mysql\bin>
