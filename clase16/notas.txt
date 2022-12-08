@@ -9,3 +9,12 @@ Para inicializar mysql
 .\mysql.exe -u root
 //CARPETA
 PS C:\xampp\mysql\bin>
+
+https://devhints.io/mysql //cheatsheet Mysql
+
+//CLASE KNEX
+https://knexjs.org
+https://devhints.io/knex //cheatsheet Knex 
+
+
+ 
