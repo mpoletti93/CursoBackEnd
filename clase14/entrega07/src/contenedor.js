@@ -75,7 +75,8 @@ async deleteById(id) {
     );
     }}
 
-async updateById(id, newData) {
+/*
+    async updateById(id, newData) {
     if(this._validateKeysExist(newData)){
     try {
         id = Number(id);
@@ -85,7 +86,7 @@ async updateById(id, newData) {
         (producto) => producto.id === id
         );
         if (objectIdToBeUpdated) {
-        const index = parsedData.indexOf(objectIdToBeUpdated);
+        const index = parsedData.indexOf(objectIdToBeUpdated, objectKeys);
         objectKeys.forEach( (key) => {
             parsedData[index][key] = newData[key];
         })
@@ -102,6 +103,31 @@ async updateById(id, newData) {
     } else {
     return false;
     }}
+*/
+async retrieve() {
+    try {
+        const contenido = await fs.promises.readFile(this._filename, 'utf-8')
+        return JSON.parse(contenido)
+    } catch {
+        return []
+    }
+}
+async updateById(obj, id) {
+    obj.id = parseInt(id);
+    this.array = await this.retrieve()
+    let find = this.array.find(item => item.id == id);
+    if (find) {
+        const auxArray = this.array.map(item => item.id == id ? obj : item);
+        this.array.splice(0);
+        this.array.push(...auxArray);
+        const contenido = JSON.stringify(this.array, null, 4)
+        await fs.promises.writeFile(this.ruta, contenido)
+        return obj;
+    } else {
+        return { error: "No se ha encontrado el objeto" }
+    }
+
+}
 
 async addToArrayById(id, objectToAdd) {
     if(this._validateKeysExist(objectToAdd)) {
@@ -172,7 +198,15 @@ async save(object) {
     try {
         const allData = await this.getData();
         const parsedData = JSON.parse(allData);
-        object.id = parsedData.length + 1;
+//fijo el ID
+        let id = 0
+			if (parsedData == 0){
+				object.id = 1
+			} else { 
+				let parsedData = JSON.parse(allData)
+				object.id = parsedData[parsedData.length - 1].id + 1
+			}
+
         parsedData.push(object);
         await fs.promises.writeFile(this._filename, JSON.stringify(parsedData));
         return object.id;
