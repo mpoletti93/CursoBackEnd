@@ -4,8 +4,12 @@ import { ProductoDao } from './dao/ProductoDao.js';
 import { CarritoDao } from './dao/CarritoDao.js'
 import { ProductoCarritoDao } from './dao/ProductoCarritoDao.js';
 import knex from 'knex';
+import { ClienteSQL } from './sqlContainer.js'
+import { options } from './configSQLite.js'
 
 dotenv.config();
+
+
 
 const app = express();
 app.use(express.json());
@@ -20,6 +24,10 @@ const authMiddleware = ((req, res, next) => {
 
 const routerProducts = express.Router();
 const routerCart = express.Router();
+//Router mensajes
+const routerMensaje = express.Router(); 
+
+app.use('/api/mensaje', routerMensaje)
 
 app.use('/api/productos', routerProducts);
 app.use('/api/carrito', routerCart);
@@ -146,9 +154,36 @@ routerCart.get('/:id/productos', async(req, res) => {
     }
 })
 
+
+/* -------- MENSAJES ENDPOINT -----*/
+const cliente = new ClienteSQL(options)
+
+cliente.crearTabla()
+    .then (() =>{
+        console.log("1- tabla creada")
+    })
+    .catch(err => console.log(err))
+
+
+routerMensaje.get('/', async (req, res) => {
+    const mensajes = await cliente.listarMensaje();
+    res.status(200).json(mensajes);
+})
+
+routerMensaje.post('/', async(req,res) => {
+    const { body } = req;
+    body.fecha = new Date().toISOString().slice(0, 19).replace('T', ' ');
+    
+    const mensaje = await cliente.insertarMensaje(body)
+    res.status(200).json('Mensaje Guardado con exito')
+})
+
+
+/* ---------- END -----------*/
 const PORT = 8080;
 const server = app.listen(PORT, () => {
 console.log(` >>>>> 🚀 Server started at http://localhost:${PORT}`)
 })
 
 server.on('error', (err) => console.log(err));
+
