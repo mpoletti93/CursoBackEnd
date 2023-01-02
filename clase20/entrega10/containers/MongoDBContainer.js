@@ -3,30 +3,39 @@ class MongoDBContainer {
         this.tableModel = tableModel
     }
 
-    save = async (element) => {
+    async save (element)  {
+        try{
         let ret = {}
         const userSaveModel = new this.tableModel(element)
         await userSaveModel.save()
-            .then((res) => {
+        .then((res) => {
                 ret = res._id
                 console.log(`[OK] insert on ${this.tableModel.collection.collectionName} ID: ${ret}`)
-            }).catch((err) => { console.error(err); ret = { 'error': 1, 'description': `[ERROR] Save on ${this.tableModel.collection.collectionName}: ${err}` } })
-            .finally(() => { })
-        return ret
-    }
+            })}
+            catch (err){ 
+console.error(err); 
+ret = { 'error': 1, 'description': `[ERROR] Save on ${this.tableModel.collection.collectionName}: ${err}` } 
+} finally {
+        return ret;
+}}
 
-    getAll = async () => {
+/////////////////////////////////////////////////////////////////////////////////////////////////
+    async getAll () {
+        try {
         let ret = []
         await this.tableModel.find({})
             .then((rows) => {
                 for (let row of rows) {
                     ret.push(row)
                 }
-            }).catch((err) => { console.error(err); throw err })
-            .finally(() => { })
+            })}
+            catch{
+    ((err) => { console.error(err); throw err })
+        }finally{
         return ret;
-    }
+        }}
 
+///////////////////////////////////
     getById = async (id) => {
         let ret = { 'error': 2, 'description': `Element ID ${id} on ${this.tableModel.collection.collectionName} Not Found` }
         let element = {}
@@ -40,6 +49,7 @@ class MongoDBContainer {
         return ret
     }
 
+///////////////////////////////////////
     update = async (id, changes) => {
         let ret = { 'error': 2, 'description': `Element ID ${id} on ${this.tableModel.collection.collectionName} Not Found` }
         await this.tableModel.findByIdAndUpdate(id, changes)
