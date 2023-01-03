@@ -24,3 +24,6 @@ npm i mongoose
 
 //Firebase
 npm i firebase-admin
+
+//FAKER
+npm i @faker-js/faker
