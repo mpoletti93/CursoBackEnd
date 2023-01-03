@@ -1,30 +1,34 @@
 import express from 'express'
 const app = express()
 
-const nombres = ['Luis', 'Lucía', 'Juan', 'Augusto', 'Ana', 'Roberto','Frank','Sebastian','Alan']
-const apellidos = ['Pieres', 'Cacurri', 'Bezzola', 'Alberca', 'Mei','Aguero','Messi','Dybala']
-const colores = ['rojo', 'verde', 'azul', 'amarillo', 'magenta','blanco','negro']
+const nombres = ['Luis', 'Lucia', 'Juan', 'Augusto', 'Ana', 'Roberto', 'Frank', 'Sebastian', 'Alan']
+const apellidos = ['Pieres', 'Cacurri', 'Bezzola', 'Alberca', 'Mei', 'Storino', 'Urbina', 'Aguero', 'Sherar']
+const colores = ['rojo', 'verde', 'azul', 'amarillo', 'marron', 'magenta', 'blanco', 'negro']
 
-app.get('/test', (req,res)=>{
-    const objs=[]
-    
-    for (let i = 0; i<10; i++){
+app.get('/test', (req, res) => {
+    const objs = []
+
+    for (let i = 0; i < 10; i++) {
         objs.push(getUser())
     }
-
-    return objs
 
     res.json(objs)
 })
 
-function getRandomElement(arr){
-    return arr[Math.floor(Math.random()* arr.length)]
+function getRandomElement(arr) {
+    return arr[Math.floor(Math.random() * arr.length)]
 }
 
-function getUser(){
+function getUser() {
     return {
         nombre: getRandomElement(nombres),
         apellido: getRandomElement(apellidos),
         color: getRandomElement(colores)
     }
 }
+
+const PORT = 8080
+
+app.listen(PORT, () => {
+    console.log('servidor escuchando')
+})
