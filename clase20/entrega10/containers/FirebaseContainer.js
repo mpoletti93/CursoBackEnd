@@ -10,7 +10,7 @@ class FirebaseContainer {
         this.query = this.db.collection(collection)
     }
 
-    save = async (element) => {
+    save = async function (element) {
         let ret = {}
         try {
             const newElement = await this.query.add(JSON.parse(JSON.stringify(element)))
@@ -24,7 +24,7 @@ class FirebaseContainer {
         return ret
     }
 
-    getAll = async () => {
+    getAll = async function ()  {
         let ret = []
         try {
             const snapshot = await this.query.get()
@@ -37,7 +37,7 @@ class FirebaseContainer {
         return ret;
     }
 
-    getById = async (id) => {
+    getById = async function (id)  {
         let ret = { 'error': 2, 'description': `Element ID ${id} on ${this.query._queryOptions.collectionId} Not Found` }
         try {
             const elem = this.query.doc(`${id}`)
@@ -51,7 +51,7 @@ class FirebaseContainer {
         return ret
     }
 
-    update = async (id, element) => {
+    update = async function (id, element)  {
         let ret = { 'error': 2, 'description': `Element ID ${id} on ${this.query._queryOptions.collectionId} Not Found` }
         try {
             const elemById = this.query.doc(`${id}`)
@@ -65,7 +65,7 @@ class FirebaseContainer {
         return ret
     }
 
-    deleteById = async (id) => {
+    deleteById = async function (id) {
         let ret = { 'error': 2, 'description': `Element ID ${id} on ${this.query._queryOptions.collectionId} Not Found` }
         try {
             await this.query.doc(`${id}`).delete();
@@ -78,7 +78,7 @@ class FirebaseContainer {
         return ret
     }
 
-    deleteAll = async () => {
+    deleteAll = async  function () {
         // https://firebase.google.com/docs/firestore/manage-data/delete-data?hl=es-419#collections
         // It is not recommended, because there are many individual deletes
         let ret = { 'error': 0, 'description': `Delete ALL on ${this.query._queryOptions.collectionId} Successful` }
