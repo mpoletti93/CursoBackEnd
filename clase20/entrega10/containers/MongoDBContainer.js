@@ -3,37 +3,37 @@ class MongoDBContainer {
         this.tableModel = tableModel
     }
 
-    save = async (element) => {
+    save = async function (element)  {
         let ret = {}
         const userSaveModel = new this.tableModel(element)
         await userSaveModel.save()
-            .then((res) => {
+            .then(function (res) {
                 ret = res._id
                 console.log(`[OK] insert on ${this.tableModel.collection.collectionName} ID: ${ret}`)
-            }).catch((err) => { console.error(err); ret = { 'error': 1, 'description': `[ERROR] Save on ${this.tableModel.collection.collectionName}: ${err}` } })
-            .finally(() => { })
+            }).catch(function (err) { console.error(err); ret = { 'error': 1, 'description': `[ERROR] Save on ${this.tableModel.collection.collectionName}: ${err}` } })
+            .finally(function () { })
         return ret
     }
 
-    getAll = async () => {
+    getAll = async function ()  {
         let ret = []
         await this.tableModel.find({})
-            .then((rows) => {
+            .then(function (rows)  {
                 for (let row of rows) {
                     ret.push(row)
                 }
-            }).catch((err) => { console.error(err); throw err })
-            .finally(() => { })
+            }).catch(function (err)  { console.error(err); throw err })
+            .finally(function () { })
         return ret;
     }
 
-    getById = async (id) => {
+    getById = async function (id)  {
         let ret = { 'error': 2, 'description': `Element ID ${id} on ${this.tableModel.collection.collectionName} Not Found` }
         let element = {}
         await this.tableModel.find({ _id: id })
             .then((row) => {
                 element = row
-            }).catch((err) => { console.error(err); throw err })
+            }).catch(function (err)  { console.error(err); throw err })
             .finally(() => { })
         if (element)
             ret = element[0]
@@ -43,30 +43,30 @@ class MongoDBContainer {
     update = async (id, changes) => {
         let ret = { 'error': 2, 'description': `Element ID ${id} on ${this.tableModel.collection.collectionName} Not Found` }
         await this.tableModel.findByIdAndUpdate(id, changes)
-            .then(() => {
+            .then(function ()  {
                 console.log(`[OK] update ID ${id} on ${this.tableModel.collection.collectionName}`)
                 ret = { 'error': 0, 'description': `Update ID ${id} on ${this.tableModel.collection.collectionName} Successful` }
-            }).catch((err) => { console.error(err); throw err })
-            .finally(() => { })
+            }).catch(function (err)  { console.error(err); throw err })
+            .finally(function () { })
         return ret
     }
 
-    deleteById = async (id) => {
+    deleteById = async function (id) {
         let ret = { 'error': 2, 'description': `Element ID ${id} on ${this.tableModel.collection.collectionName} Not Found` }
         await this.tableModel.findByIdAndRemove(id)
-            .then(() => {
+            .then(function ()  {
                 console.log(`[OK] delete ID ${id} on ${this.tableModel.collection.collectionName}`)
                 ret = { 'error': 0, 'description': `Delete ID ${id} on ${this.tableModel.collection.collectionName} Successful` }
-            }).catch((err) => { console.error(err); throw err })
-            .finally(() => { })
+            }).catch(function (err)  { console.error(err); throw err })
+            .finally(function () { })
         return ret
     }
 
-    deleteAll = async () => {
+    deleteAll = async function()  {
         await this.tableModel.deleteMany()
-            .then(() => console.log(`[OK] delete ALL on ${this.tableModel.collection.collectionName}`)
-            ).catch((err) => { console.error(err); throw err })
-            .finally(() => { })
+            .then(function() { console.log(`[OK] delete ALL on ${this.tableModel.collection.collectionName}`)}
+            ).catch(function (err) { console.error(err); throw err })
+            .finally(function() { })
         return { 'error': 0, 'description': `Delete ALL on ${this.tableModel.collection.collectionName} Successful` }
     }
 
