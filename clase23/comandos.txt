@@ -1,0 +1,38 @@
+npm init -y //SIEMPREEE
+npm i router
+npm i express socket.io
+npm install @babel/core @babel/cli @babel/preset-env
+// para guardar en package Json
+"build": "babel ./main.js -o ./main_es5.js -w"
+npm i typescript
+
+//WEBPACK Y TS
+npm install webpack webpack-cli
+//para instalar webpack hay que corres este ocmando porque esta deprecada la libreria
+set NODE_OPTIONS=--openssl-legacy-provider && npm start
+npm i express @types/express
+
+//KNEX para generar consultas a base de datos
+npm i KNEX
+npm i pg //para PostgreSQL y Amazon RedShift
+npm i mysql //para MySQL y mariadb
+npm i sqlite3 //para sqlite3
+npm i mssql
+
+//Mongoose
+npm i mongoose
+
+//Firebase
+npm i firebase-admin
+
+//FAKER
+npm i @faker-js/faker
+
+//Normalizr
+npm i normalizr
+
+//Cookie parse
+npm i cookie-parser
+
+//sessions 
+npm i express-session

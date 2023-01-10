@@ -1,0 +1,29 @@
+mariadb -> base de datos
+Xampp -> servidor de base de datos
+
+en la consolo del manejador de la base
+netstat -ano -p tcp
+
+Para inicializar mysql
+//COMANDO 
+.\mysql.exe -u root
+//CARPETA
+PS C:\xampp\mysql\bin>
+
+https://devhints.io/mysql //cheatsheet Mysql
+
+//CLASE KNEX
+https://knexjs.org
+https://devhints.io/knex //cheatsheet Knex 
+
+12/12
+ MONGOD 
+ //comando para activar
+ mongod --dbpath "Desktop/CODER/Backend/Databases
+ 
+ //mongosh en otra consola para inicializar la base de datos
+ mongosh
+
+ show databases
+ show collections
+ db.usuarios.insert({nombre:'juan', edad:32})
