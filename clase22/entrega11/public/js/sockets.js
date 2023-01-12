@@ -74,6 +74,7 @@ socket.on('updateCatalog', async catalog => {
     document.querySelector('#productList').innerHTML = products
 })
 
+///////////////////////* ACA ESTA EL PROBLEMAAAAAA*///////////////////////////////////7
 socket.on('updateMessages', async webchat => {
     console.log('----- normalized -----')
     console.log(webchat)
