@@ -2,7 +2,6 @@ const socket = io()
 
 const normalizer = normalizr
 const denormalize = normalizer.denormalize
-
 const schema = normalizer.schema
 
 const schemaAuthor = new schema.Entity('author', {}, { idAttribute: 'email' });
@@ -75,7 +74,6 @@ socket.on('updateCatalog', async catalog => {
     document.querySelector('#productList').innerHTML = products
 })
 
-///////////////////////* ACA ESTA EL PROBLEMAAAAAA*///////////////////////////////////7
 socket.on('updateMessages', async webchat => {
     console.log('----- normalized -----')
     console.log(webchat)

@@ -6,6 +6,7 @@ export const mysqlConn = {
         password: '',
         database: 'ecommerce'
     },
+    pool: { min: 0, max: 7 }
 }
 
 export const sqlite3Conn = {
@@ -13,5 +14,6 @@ export const sqlite3Conn = {
     connection: {
         filename: "./persistence/db/ecommerce.sqlite"
     },
+    pool: { min: 0, max: 7 },
     useNullAsDefault: true
 }

@@ -1,15 +1,24 @@
 import express from 'express'
 import session from 'express-session'
 // nuevo
-import sessionFileStore from 'session-file-store'
-const FileStore = sessionFileStore(session)
+import redis from 'redis'
+const client = redis.createClient({
+  url: "redis://localhost:6379?ConnectTimeout=5000&IdleTimeOutSecs=180",
+  legacyMode: true
+})
+import redisStore from 'connect-redis'
+const RedisStore = redisStore(session)
+
+await client.connect()
 
 const app = express()
 
 app.use(session({
 
-    store: new FileStore({
-        path: './sessions',
+    store: new RedisStore({
+        host: 'localhost',
+        port: 6379,
+        client: client,
         ttl: 60
     }),
 
@@ -42,6 +51,7 @@ app.get("/olvidar", (req, res) => {
 })
 
 
-const PORT = 8081
+const PORT = 8082
 
 app.listen(PORT, () => {console.log("escuchando en el 8081")})
+ 
