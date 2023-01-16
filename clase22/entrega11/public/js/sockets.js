@@ -75,7 +75,8 @@ socket.on('updateCatalog', async catalog => {
     document.querySelector('#productList').innerHTML = products
 })
 
-///////////////////////* ACA ESTA EL PROBLEMAAAAAA*///////////////////////////////////7
+///////////////////////* ACA ESTA EL PROBLEMAAAAAA*///////////////////////////////////
+/*
 socket.on('updateMessages', async webchat => {
     console.log('----- normalized -----')
     console.log(webchat)
@@ -86,7 +87,7 @@ socket.on('updateMessages', async webchat => {
     console.log(denormalizedData)
     document.querySelector('#messageList').innerHTML = msgs
 })
-
+*/
 socket.on('updateCompressRate', async compressRate => {
     document.querySelector('#compressRate').innerHTML = compressRate
 })
