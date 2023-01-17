@@ -1,14 +1,15 @@
 import Router from 'express'
 export const sessionRouter = Router()
 
+
 let sessionActive = undefined
 
 const checkInvalidSession = (req, res) => {
-    return !req.session?.user || !req.session?.loggedin || req.session.user != process.env.TESTING_USER
+    return !req.session?.user || !req.session?.loggedin || req.session.user != "marian"
 }
 
 sessionRouter.get('/', (req, res) => {
-    // I don't use middleware to avoid wasting more time with hbs
+    
     if (checkInvalidSession(req, res)) {
         sessionActive = sessionActive === true ? false : undefined
         res.render('login.hbs', sessionActive !== undefined && !sessionActive ? { msgError: 'Session Expired' } : '')
@@ -29,7 +30,7 @@ sessionRouter.get('/logout', (req, res) => {
 
 sessionRouter.post('/login', (req, res) => {
     const { username } = req.body
-    if (username != process.env.TESTING_USER) {
+    if (username != "marian") {
         res.render('login.hbs', { msgError: 'Wrong Credentials' })
     } else {
         req.session.user = username
