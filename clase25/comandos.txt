@@ -42,8 +42,3 @@ npm i session-file-store
 
 //Connect-mongo
 npm i connect-mongo
-
-//PASSPORT y PASSPORT-LOCAL
-npm i passport
-npm i passport-local
-
