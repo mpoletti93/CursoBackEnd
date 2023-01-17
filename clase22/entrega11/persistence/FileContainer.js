@@ -15,15 +15,20 @@ export default class FileContainer {
         if (!fs.existsSync(this.pathFile)) {
             fs.writeFileSync(this.pathFile, '[]', { encoding: "utf-8" })
         }
-        this.elements = fs.readFileSync(this.pathFile, 'utf-8')
-        this.elements = JSON.parse(this.elements)
+        this.elements = JSON.parse(fs.readFileSync(this.pathFile, 'utf-8'))
     }
 
     save = (object) => {
         try {
             const cnt = this.elements.length
+            console.log(this.elements);
+            console.log('cnt');
+            console.log(cnt);
             const idCreated = cnt > 0 ? this.elements[cnt - 1].id + 1 : 1
             fs.writeFileSync(this.pathFile, JSON.stringify([...this.elements, { ...object, id: idCreated }], null, 2), 'utf-8')
+            this.updateElements()
+            console.log('despues de la creacion');
+            console.log(idCreated)
             return idCreated
         } catch (err) {
             console.error('[ERROR] on Save > ' + err)
@@ -51,6 +56,7 @@ export default class FileContainer {
                     : elem
             )
             fs.writeFileSync(this.pathFile, JSON.stringify(this.elements, null, 2), 'utf-8')
+            this.updateElements()
             console.log(`[OK] update id ${id}`)
             ret = { 'error': 0, 'description': `Update ID ${id} Successful` }
         }
@@ -63,6 +69,7 @@ export default class FileContainer {
         if (item) {
             this.elements = this.elements.filter(elem => elem.id !== id)
             fs.writeFileSync(this.pathFile, JSON.stringify(this.elements, null, 2), 'utf-8')
+            this.updateElements()
             console.log(`[OK] delete id ${id}`)
             ret = { 'error': 0, 'description': `Delete ID ${id} Successful` }
         }
@@ -71,8 +78,13 @@ export default class FileContainer {
 
     deleteAll = () => {
         fs.writeFileSync(this.pathFile, '[]', 'utf-8')
+        this.updateElements()
         console.log('[OK] delete ALL')
         return { 'error': 0, 'description': `Delete ALL Successful` }
+    }
+
+    updateElements() {
+        this.elements = JSON.parse(fs.readFileSync(this.pathFile, 'utf-8'))
     }
 
 }

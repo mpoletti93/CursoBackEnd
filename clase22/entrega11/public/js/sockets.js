@@ -82,7 +82,7 @@ socket.on('updateMessages', async webchat => {
     console.log(webchat)
     //const msgs = await renderTemplate('webchat', webchat)
     const denormalizedData = await denormalize(webchat.result, schemaChat, webchat.entities)
-    const msgs = await renderTemplate('webchat', denormalizedData.messages)
+    const msgs = await renderTemplate('webchat', denormalizedData.messages.reverse())
     console.log('----- denormalized -----')
     console.log(denormalizedData)
     document.querySelector('#messageList').innerHTML = msgs

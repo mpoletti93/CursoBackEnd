@@ -89,6 +89,7 @@ io.on('connection', async socket => {
     const listMsgs = await msgDB.getAll()
     const normalizedData = getNormalizedData(listMsgs)
     //socket.emit('updateMessages', listMsgs)
+    console.log(normalizedData.data);
     socket.emit('updateMessages', normalizedData.data)
     socket.emit('updateCompressRate', normalizedData.rate)
 
@@ -97,16 +98,17 @@ io.on('connection', async socket => {
         const msgElement = new Message(email, name, surname, age, alias, avatar, msg)
         //await sqlite3DB.save(msgElement)
         await msgDB.save(msgElement)
-        //const listMsgs = await sqlite3DB.getAll()
         const listMsgs = await msgDB.getAll()
-        io.sockets.emit('updateMessages', listMsgs)
+        const normalizedData = getNormalizedData(listMsgs);
+        io.sockets.emit('updateMessages', normalizedData.data)
     })
 
     socket.on('addMsgRandom', async () => {
         const data = getRandomMessage()
         await msgDB.save(data)
         const listMsgs = await msgDB.getAll()
-        io.sockets.emit('updateMessages', listProds)
+        const normalizedData = getNormalizedData(listMsgs);
+        io.sockets.emit('updateMessages', normalizedData.data)
     })
 
     socket.on('addProductRandom', async () => {
