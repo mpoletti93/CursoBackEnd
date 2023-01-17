@@ -4,7 +4,7 @@ dotenv.config()
 
 //server
 import express from 'express'
-const PORT = process.env.PORT || 8081
+const PORT =  8081
 //templates
 import hbs from 'express-handlebars'
 //socket

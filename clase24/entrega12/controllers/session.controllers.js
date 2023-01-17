@@ -1,14 +1,12 @@
 import MongoStore from 'connect-mongo'
-import * as dotenv from 'dotenv'
-dotenv.config()
 const advancedOptions = { useNewUrlParser: true, useUnifiedTopology: true }
 
 export const configSession = {
     store: MongoStore.create({
-        mongoUrl: process.env.MONGOSTORE_CONN,
+        mongoUrl: "mongodb+srv://mpoletti:poletti12@miprimercluster.78oud0k.mongodb.net/?retryWrites=true&w=majority",
         mongoOptions: advancedOptions
     }),
-    secret: process.env.MONGOSTORE_SECRET,
+    secret: "test",
     resave: false,
     saveUninitialized: false,
     cookie: {
