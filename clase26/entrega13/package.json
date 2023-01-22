@@ -1,0 +1,27 @@
+{
+  "name": "entrega13",
+  "version": "1.0.0",
+  "description": "Implementar sobre el entregable que venimos realizando un mecanismo de autenticación. Para ello:\r - Se incluirá una vista de registro, en donde se pidan email y contraseña. Estos datos se persistirán usando MongoDb, en una (nueva) colección de usuarios, cuidando que la contraseña quede encriptada (sugerencia: usar la librería bcrypt).\r - Una vista de login, donde se pida email y contraseña, y que realice la autenticación del lado del servidor a través de una estrategia de passport local.\r - Cada una de las vistas (logueo - registro) deberá tener un botón para ser redirigido a la otra.\r - Una vez logueado el usuario, se lo redirigirá al inicio, el cual ahora mostrará también su email, y un botón para desolguearse.\r - Además, se activará un espacio de sesión controlado por la sesión de passport. Esta estará activa por 10 minutos y en cada acceso se recargará este tiempo.\r - Agregar también vistas de error para login (credenciales no válidas) y registro (usuario ya registrado).\r - El resto de la funciones, deben quedar tal cual estaban el proyecto original.",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "connect-mongo": "^4.6.0",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-handlebars": "^6.0.6",
+    "express-session": "^1.17.3",
+    "mongoose": "^6.8.4",
+    "passport": "^0.6.0",
+    "passport-facebook": "^3.0.0",
+    "passport-twitter": "^1.0.4",
+    "session-file-store": "^1.5.0"
+  }
+}
