@@ -50,3 +50,5 @@ npm i passport-local
 //PASSPORT TWITTER
 npm i passport-twitter 
 
+//JWT
+npm i jsonwebtoken
