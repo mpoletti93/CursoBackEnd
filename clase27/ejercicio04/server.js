@@ -11,3 +11,11 @@ console.log({
     puerto,
     debug
 })
+/*
+dotenv.config({
+   path:
+       process.env.MODO == 'byn'
+           ? path.resolve(__dirname, 'byn.env')
+           : path.resolve(__dirname, 'colores.env')
+})
+*/
